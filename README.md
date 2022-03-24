@@ -1,7 +1,6 @@
 # URL Shortener Application using React And Firebase
 
 <br></br>
-
 ![Project Preview](./docs/imgs/preview_img.png)
 
 ## Introduction
