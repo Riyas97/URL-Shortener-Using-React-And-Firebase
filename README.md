@@ -22,9 +22,9 @@ To view a video demonstration of the application, please click [here](https://ww
 As written above, to access the application online, please click [here](https://url-shortener-react-72986.web.app/).
 
 ## Pseudocode
-1. The application will first displays the homepage where users have to enter a URL and click the respective button to generate a shortened URL.
+1. The application will first display the homepage where users have to enter a URL and click the respective button to generate a shortened URL.
 2. The application will then verify whether the specified URL is valid. If the specified URL is invalid, the application generates an alert box with the respective message.
-3. If the specified URL is valid, the application generates a corresponding unique ID and save the original URL and the unique ID in the firebase database. Then, the application will append the unique ID with hostname. This would be the shortened URL generated. The application will then, display the shortened URL, along with a button for users to copy the generated shortened URL to the clipboard and lastly a QR code that stores this shortened URL (for users to scan).
+3. If the specified URL is valid, the application generates a corresponding unique ID and save the original URL and the unique ID in the firebase database. Then, the application will append the unique ID with the host website name. This would be the shortened URL generated. The application will then, display the shortened URL, along with a button for users to copy the generated shortened URL to the clipboard and lastly a QR code that stores this shortened URL (for users to scan).
 4. When users key in the generated shortened URL, the application will first extract the unique ID and make a query in the database to search for the corresponding original URL. If the original URL exists, the application will redirect to the respective original URL. Else, the application redirects to the homepage.
 
 ## Node Libraries Used
