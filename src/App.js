@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+/*
+This file creates two routes - one for the homepage where users can 
+generate a shortened url and another where users will be redirected 
+to the original url when they key in the shortened url
+*/
+
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./components/homepage/home";
+import Redirector from "./components/redirect";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Home/>} />
+          <Route exact path="v/:code" element={<Redirector/>} />
+        </Routes>
+      </Router>
     </div>
   );
 }
