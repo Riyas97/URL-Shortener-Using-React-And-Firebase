@@ -8,7 +8,7 @@ The generated shortened url along with the original url specified by the user ar
 stored in the firebase database.
 */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { db } from "../../config/firebase";
 import { collection, addDoc } from 'firebase/firestore'
 import "./home.css";
@@ -34,6 +34,13 @@ function Home() {
 
   // state for copying shortened url
   const [copied, setCopied] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCopied(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [copied]);
 
   // state for loading 
   // so that UI will show the loading message while generating short url 
@@ -43,15 +50,15 @@ function Home() {
   }
 
   // store the hostname
-  const host = window.location.href;
+  const host = "https://url-shortener-react-72986.web.app/";
 
   // invoked after user has specified the long url
   // creates the shortened url and saves them to the database
   const handleSubmit = async (e) => {
 
     // first, check whether specified url is valid
-    if (!isURL(url)) {
-      alert("Sorry. It seems like you have entered an invalid url!")
+    if (!url.startsWith("https://") || !isURL(url)) {
+      alert("Sorry. Please ensure you enter a valid URL that starts with 'https://'!")
       return
     }
 

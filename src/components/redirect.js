@@ -4,13 +4,14 @@ when they key in the generated shortened url
 */
 
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { db } from "../config/firebase";
 import { collection, query, where, onSnapshot } from "firebase/firestore";
 
 function Redirector() {
   const { code } = useParams();
   const [url, setUrl] = useState("");
+  const history = useNavigate();
 
   // query the database to obtain the original url
   const redirect_url = async () => {
@@ -20,7 +21,10 @@ function Redirector() {
         where("short_url_code", "==", code),
       ),
       (snapshot) => {
-        // redirect to the original url
+        if (snapshot.empty) {
+          return history("/");
+        }
+        // redirect to the original url if exist
         setUrl(snapshot.docs[0].data().original_url);
         window.location.replace(url);
       }
